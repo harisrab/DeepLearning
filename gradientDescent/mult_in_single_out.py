@@ -1,8 +1,11 @@
-"""This program implements the gradient descent in a general fashion"""
+"""
+This program implements the gradient descent for multiple inputs and one output
+
+"""
 
 weights = [0.1, 0.2, -0.1]
 target = 0.5
-alpha = 0.01
+alpha = 0.001
 
 #Inputs
 toes =  [8.5 , 9.5, 9.9, 9.0]
@@ -40,7 +43,8 @@ def neural_network(input_vector, weight_vector):
     error = (prediction - target) ** 2
     delta = prediction - target
     weight_delta = ele_multiplication(input_vector, delta)
-    
+
+    weight_delta[1] = 0.0
     #Weight update
     for i in range(len(weight_vector)):
         weight_vector[i] -= weight_delta[i] * alpha
@@ -51,19 +55,9 @@ def neural_network(input_vector, weight_vector):
     return prediction
 
 def main():
-    for epoch in range(50):
+    for epoch in range(1001):
         print "------------------- Epoch %s --------------" %epoch
         neural_network(input, weights)
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
