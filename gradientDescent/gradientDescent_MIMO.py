@@ -10,6 +10,8 @@ weights = [ [0.1, 0.1, -0.3],
             [0.1, 0.2, 0.0 ], 
             [0.0, 1.3, 0.1 ] ]
 
+alpha = 0.01
+
 # Weights Matrix must have the following dimensions [outputs][inputs]
 #Check correct dimensions before proceeding
 try:
@@ -65,7 +67,7 @@ def vector_mult(error_deltas, inputs):
     
     return output
 
-def neural_network(epochs, inputs, weights, targets):
+def neural_network(epochs, inputs, weights, targets, alpha):
     """Function runs the core of neural implementation"""
 
     for epoch in range(epochs):
@@ -84,8 +86,8 @@ def neural_network(epochs, inputs, weights, targets):
         weight_deltas = vector_mult(deltas, inputs)
     
         for j in range(len(weights)):
-            for i in range(len(weights[i])):
-                weights[j][i] = weights[j][i] - (weight_deltas[j][i] * 0.01)
+            for i in range(len(weights[0])):
+                weights[j][i] -= (weight_deltas[j][i] * alpha)
         
         #Print on each iteration
         print''
@@ -96,7 +98,7 @@ def neural_network(epochs, inputs, weights, targets):
 
 def main():
     #Instantiate the neural network
-    neural_network(epochs, inputs, weights, targets)
+    neural_network(epochs, inputs, weights, targets, alpha)
 
 if __name__ == '__main__':
     main()
