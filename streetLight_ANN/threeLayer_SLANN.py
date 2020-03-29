@@ -17,6 +17,8 @@ class deep_neural_network:
         self.hidden_size = hidden_size
         self.out_error = 0
         
+        np.random.seed(1)
+
         # Declare Weights
         self.weights_ih = 2 * np.random.random((len(self.training_data[0]), self.hidden_size)) - 1
         self.weights_ho = 2 * np.random.random((self.hidden_size, len(self.training_targets[0]))) - 1
